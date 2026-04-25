@@ -4,24 +4,65 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const PROBLEM_METRICS = [
+type ProblemBubble = {
+  big: string
+  unit: string
+  desc: string
+  tone: 'red' | 'amber' | 'cyan' | 'violet'
+  size: number
+}
+
+const PROBLEM_METRICS: ProblemBubble[] = [
   {
-    metric: '24 days/year lost',
-    desc: 'Financial admin drains almost a working month from small businesses every year.',
+    big: '£11bn',
+    unit: 'lost yearly to late payments',
+    desc: 'UK businesses bleed cashflow and slow growth chasing invoices.',
+    tone: 'red',
+    size: 240,
   },
   {
-    metric: '£11 billion lost every year',
-    desc: 'UK businesses lose this to late payments, squeezing cashflow and slowing growth.',
+    big: '24',
+    unit: 'days/year of finance admin',
+    desc: 'Almost a working month gone to manual money work, every year.',
+    tone: 'amber',
+    size: 210,
   },
   {
-    metric: '5.7m UK businesses',
-    desc: 'Millions of SMEs need finance workflows without hiring full finance teams.',
+    big: '5.7m',
+    unit: 'UK SMEs',
+    desc: 'Millions need finance workflows without hiring a finance team.',
+    tone: 'cyan',
+    size: 210,
   },
   {
-    metric: '16.5m Open Banking connections',
-    desc: 'The secure data rails already exist. Now the next layer is agentic action.',
+    big: '16.5m',
+    unit: 'Open Banking connections',
+    desc: 'Secure rails already exist. The next layer is agentic action.',
+    tone: 'violet',
+    size: 220,
   },
 ]
+
+const TONE_GRADIENT: Record<ProblemBubble['tone'], string> = {
+  red: 'radial-gradient(circle at 30% 25%, rgba(255,94,94,0.55), rgba(255,94,94,0.10) 60%, rgba(20,20,40,0.95) 100%)',
+  amber: 'radial-gradient(circle at 30% 25%, rgba(255,176,82,0.50), rgba(255,176,82,0.08) 60%, rgba(20,20,40,0.95) 100%)',
+  cyan: 'radial-gradient(circle at 30% 25%, rgba(0,212,255,0.45), rgba(0,212,255,0.08) 60%, rgba(20,20,40,0.95) 100%)',
+  violet: 'radial-gradient(circle at 30% 25%, rgba(157,108,255,0.50), rgba(157,108,255,0.08) 60%, rgba(20,20,40,0.95) 100%)',
+}
+
+const TONE_BORDER: Record<ProblemBubble['tone'], string> = {
+  red: 'rgba(255,94,94,0.55)',
+  amber: 'rgba(255,176,82,0.55)',
+  cyan: 'rgba(0,212,255,0.55)',
+  violet: 'rgba(157,108,255,0.55)',
+}
+
+const TONE_GLOW: Record<ProblemBubble['tone'], string> = {
+  red: '0 0 60px rgba(255,94,94,0.25), 0 20px 50px rgba(0,0,0,0.45)',
+  amber: '0 0 60px rgba(255,176,82,0.25), 0 20px 50px rgba(0,0,0,0.45)',
+  cyan: '0 0 60px rgba(0,212,255,0.22), 0 20px 50px rgba(0,0,0,0.45)',
+  violet: '0 0 60px rgba(157,108,255,0.25), 0 20px 50px rgba(0,0,0,0.45)',
+}
 
 export default function Problem() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -30,8 +71,24 @@ export default function Problem() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>('.problem-card').forEach((card, i) => {
-        gsap.from(card, { opacity: 0, y: 30, duration: 0.6, delay: i * 0.08, scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none reverse' } })
+      gsap.utils.toArray<HTMLElement>('.problem-bubble').forEach((bubble, i) => {
+        gsap.from(bubble, {
+          opacity: 0,
+          scale: 0.6,
+          y: 24,
+          duration: 0.7,
+          delay: i * 0.1,
+          ease: 'back.out(1.6)',
+          scrollTrigger: { trigger: bubble, start: 'top 88%', toggleActions: 'play none none reverse' },
+        })
+        gsap.to(bubble.querySelector('.problem-bubble-circle'), {
+          y: i % 2 === 0 ? -10 : 10,
+          duration: 3 + (i % 2),
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+          delay: i * 0.2,
+        })
       })
 
       if (floatingARef.current) {
@@ -116,11 +173,89 @@ export default function Problem() {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '16px' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            alignItems: 'flex-start',
+            gap: 'clamp(20px, 4vw, 48px)',
+            margin: '0 auto',
+            maxWidth: '1100px',
+          }}
+        >
           {PROBLEM_METRICS.map((p) => (
-            <div key={p.metric} className="problem-card" style={{ background: 'linear-gradient(135deg, #0E0E20, #121228)', border: '1px solid #1A1A35', borderRadius: '16px', padding: '28px', transition: 'border-color 0.3s, transform 0.3s' }} onMouseEnter={e => { e.currentTarget.style.borderColor = '#FF5E5E44'; e.currentTarget.style.transform = 'translateY(-4px)' }} onMouseLeave={e => { e.currentTarget.style.borderColor = '#1A1A35'; e.currentTarget.style.transform = 'translateY(0)' }}>
-              <h3 style={{ fontSize: '29px', fontWeight: 800, margin: '0 0 10px 0', lineHeight: 1.1, color: '#FFFFFF' }}>{p.metric}</h3>
-              <p style={{ color: '#8A8AAA', fontSize: '15px', lineHeight: 1.6, margin: 0 }}>{p.desc}</p>
+            <div
+              key={p.big + p.unit}
+              className="problem-bubble"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                width: `${p.size}px`,
+                maxWidth: '90vw',
+              }}
+            >
+              <div
+                className="problem-bubble-circle"
+                style={{
+                  width: `${p.size}px`,
+                  height: `${p.size}px`,
+                  maxWidth: '90vw',
+                  maxHeight: '90vw',
+                  borderRadius: '50%',
+                  background: TONE_GRADIENT[p.tone],
+                  border: `1px solid ${TONE_BORDER[p.tone]}`,
+                  boxShadow: TONE_GLOW[p.tone],
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  textAlign: 'center',
+                  padding: '14px',
+                  position: 'relative',
+                  backdropFilter: 'blur(6px)',
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: `${Math.round(p.size * 0.26)}px`,
+                    fontWeight: 900,
+                    lineHeight: 1,
+                    color: '#FFFFFF',
+                    letterSpacing: '-0.02em',
+                    textShadow: '0 2px 18px rgba(0,0,0,0.4)',
+                  }}
+                >
+                  {p.big}
+                </div>
+                <div
+                  style={{
+                    marginTop: '10px',
+                    fontFamily: "'Space Mono', monospace",
+                    fontSize: '11px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1.5px',
+                    color: '#E6E6F5',
+                    maxWidth: '85%',
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {p.unit}
+                </div>
+              </div>
+              <p
+                style={{
+                  marginTop: '18px',
+                  color: '#8A8AAA',
+                  fontSize: '14px',
+                  lineHeight: 1.55,
+                  textAlign: 'center',
+                  maxWidth: '220px',
+                }}
+              >
+                {p.desc}
+              </p>
             </div>
           ))}
         </div>
