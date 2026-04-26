@@ -20,10 +20,10 @@ export default function App() {
       <Problem />
       <Solution />
       <Founders />
-      <Roadmap />
       <Advisors />
-      <Minions />
       <Features />
+      <Minions />
+      <Roadmap />
       <Closing />
       <Pricing />
       <Compare />
