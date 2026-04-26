@@ -6,7 +6,6 @@ export default function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.hero-badge', { opacity: 0, y: 20, duration: 0.8, delay: 0.2 })
       gsap.from('.hero-h1', { opacity: 0, y: 40, duration: 1, delay: 0.4 })
       gsap.from('.hero-sub', { opacity: 0, y: 20, duration: 0.8, delay: 0.7 })
       gsap.from('.hero-prompt', { opacity: 0, y: 30, scale: 0.95, duration: 0.8, delay: 1.0 })
@@ -23,11 +22,6 @@ export default function Hero() {
       <div style={{ position: 'absolute', bottom: '-10%', left: '-5%', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(0,240,200,0.06), transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }} />
 
       <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 2 }}>
-        <div className="hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 16px', borderRadius: '50px', border: '1px solid #1A1A35', background: 'rgba(0,212,255,0.05)', marginBottom: '32px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#00D4FF', animation: 'pulse 2s infinite' }} />
-          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: '12px', color: '#00D4FF', textTransform: 'uppercase', letterSpacing: '1px' }}>Reinventing finance with AI</span>
-        </div>
-
         <h1 className="hero-h1" style={{ fontFamily: "'Inter', sans-serif", fontSize: 'clamp(2.5rem, 7vw, 4.5rem)', fontWeight: 800, lineHeight: 1.1, margin: '0 0 20px 0', letterSpacing: '-1px' }}>
           Build your own<br />
           <span style={{ background: 'linear-gradient(135deg, #00D4FF, #00F0C8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>financial agents.</span>
