@@ -38,28 +38,6 @@ const MINIONS = [
     outputs: 'Tax estimate, compliance checklist',
     tasks: 'Estimate VAT/corporate tax, track deadlines, generate compliance checklist, submit reminders.',
   },
-  {
-    name: 'Cashflow Minion',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-      </svg>
-    ),
-    inputs: 'Bank balances, invoices, payroll schedule',
-    outputs: 'Forecast, alerts, reserve strategy',
-    tasks: 'Run 30/60/90-day cashflow forecast, alert when balance drops below thresholds, suggest reserve strategy.',
-  },
-  {
-    name: 'Advisor Minion',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F472B6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
-      </svg>
-    ),
-    inputs: 'All data from other Minions',
-    outputs: 'Suggestions, report summaries',
-    tasks: 'Synthesise reports, compare performance to industry benchmarks, suggest cost savings and smarter money moves.',
-  },
 ]
 
 const CHAT_STEPS = [
@@ -96,7 +74,7 @@ export default function Minions() {
           <div style={{ background: 'linear-gradient(135deg, #0E0E20, #121228)', border: '1px solid #1A1A35', borderRadius: '16px', padding: '24px' }}>
             <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '11px', color: '#00D4FF', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' }}>Out-of-the-box for business</div>
             <p style={{ margin: 0, color: '#B0B0CC', fontSize: '14px', lineHeight: 1.6 }}>
-              Deploy prebuilt Minions for invoicing, expenses, tax, cashflow, and financial guidance from day one. They include proven defaults, controls, and review checkpoints.
+              Deploy prebuilt Minions for invoicing, expenses, and tax from day one. They include proven defaults, controls, and review checkpoints.
             </p>
           </div>
           <div style={{ background: 'linear-gradient(135deg, #0A0A1E, #0E0E28)', border: '1px solid #1A1A35', borderRadius: '16px', padding: '24px' }}>
