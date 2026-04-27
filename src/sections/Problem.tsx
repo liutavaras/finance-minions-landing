@@ -102,7 +102,7 @@ export default function Problem() {
           </div>
 
           {/* Right column — stacked */}
-          <div style={{ gridColumn: 'span 5', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div className="bento-col" style={{ gridColumn: 'span 5', display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {/* 24 days */}
             <div className="bento-card" style={{ flex: 1, background: PROBLEMS[1].bg, border: '1px solid rgba(245,166,35,0.08)', borderRadius: '28px', padding: 'clamp(24px, 3vw, 36px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', transition: 'transform 0.4s, box-shadow 0.4s', cursor: 'default' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 24px 64px rgba(245,166,35,0.08)' }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none' }}>
               <div className="stat-number" style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: PROBLEMS[1].accent, lineHeight: 1, letterSpacing: '-2px', marginBottom: '8px' }}>
@@ -138,8 +138,12 @@ export default function Problem() {
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
           #problem .bento-card { grid-column: span 12 !important; }
+          #problem .bento-col { grid-column: span 12 !important; }
+        }
+        @media (max-width: 480px) {
+          #problem .problem-bar > div { font-size: 13px !important; padding: 12px 16px !important; }
         }
       `}</style>
     </section>

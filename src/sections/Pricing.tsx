@@ -82,6 +82,15 @@ export default function Pricing() {
           })}
         </div>
 
+        <style>{`
+          @media (max-width: 480px) {
+            #pricing .pricing-card { padding: 24px !important; }
+            #pricing .pricing-card h3 { font-size: 17px !important; }
+            #pricing .pricing-table { padding: 16px !important; }
+            #pricing .pricing-table th, #pricing .pricing-table td { padding: 8px 10px !important; font-size: 12px !important; }
+          }
+        `}</style>
+
         <div className="pricing-table" style={{ background: '#fafbfc', border: '1px solid rgba(0, 24, 69, 0.04)', borderRadius: '24px', padding: 'clamp(20px, 3vw, 32px)', overflowX: 'auto' }}>
           <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '0 0 16px 0', color: '#0a1628', textAlign: 'center' }}>Feature Comparison</h3>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '14px', minWidth: '400px' }}>

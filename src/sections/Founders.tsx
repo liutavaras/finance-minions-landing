@@ -80,6 +80,13 @@ export default function Founders() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 480px) {
+          #founders .founder-card { padding: 22px !important; }
+          #founders .founder-card img { width: 56px !important; height: 56px !important; }
+        }
+      `}</style>
     </section>
   )
 }

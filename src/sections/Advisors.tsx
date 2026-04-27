@@ -76,6 +76,13 @@ export default function Advisors() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 480px) {
+          #advisors .advisor-card { padding: 22px !important; }
+          #advisors .advisor-card img { width: 56px !important; height: 56px !important; }
+        }
+      `}</style>
     </section>
   )
 }

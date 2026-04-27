@@ -142,6 +142,7 @@ export default function Hero() {
         overflow: 'hidden',
         background: '#ffffff',
       }}
+      className="hero-section"
     >
       {/* Background effects */}
       <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 0, pointerEvents: 'none' }}>
@@ -153,7 +154,7 @@ export default function Hero() {
       {/* Dot grid */}
       <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(10,22,40,0.022) 1px, transparent 0)', backgroundSize: '40px 40px', opacity: 0.7, zIndex: 0, pointerEvents: 'none' }} />
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(40px, 6vw, 80px)', alignItems: 'center', position: 'relative', zIndex: 2 }}>
+      <div className="hero-grid" style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(40px, 6vw, 80px)', alignItems: 'center', position: 'relative', zIndex: 2 }}>
         {/* Left column — text */}
         <div style={{ maxWidth: '560px' }}>
           <h1 className="hero-title" style={{ fontSize: 'clamp(2.8rem, 5.5vw, 4.5rem)', fontWeight: 800, lineHeight: 1.05, margin: '0 0 24px 0', letterSpacing: '-2.5px', color: '#0a1628' }}>
@@ -253,11 +254,16 @@ export default function Hero() {
           animation: gradient-shift 6s ease infinite;
         }
         @media (max-width: 768px) {
-          #hero > div:first-of-type + div { grid-template-columns: 1fr !important; }
+          .hero-section { padding: 110px 20px 60px !important; }
+          .hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
           .hero-visual { display: none !important; }
+          .hero-title { letter-spacing: -1.5px !important; }
         }
         @media (min-width: 769px) {
           .hero-visual { display: block !important; }
+        }
+        @media (max-width: 480px) {
+          .hero-section { padding: 100px 16px 50px !important; }
         }
       `}</style>
     </section>

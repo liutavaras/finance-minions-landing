@@ -128,9 +128,9 @@ export default function Solution() {
         </div>
 
         {/* Vertical Timeline */}
-        <div ref={timelineRef} style={{ position: 'relative', paddingLeft: '48px' }}>
+        <div ref={timelineRef} className="solution-timeline" style={{ position: 'relative', paddingLeft: '48px' }}>
           {/* Vertical connecting line */}
-          <div style={{ position: 'absolute', left: '15px', top: '24px', bottom: '24px', width: '2px', background: 'rgba(0,24,69,0.06)', borderRadius: '2px' }}>
+          <div className="solution-line-track" style={{ position: 'absolute', left: '15px', top: '24px', bottom: '24px', width: '2px', background: 'rgba(0,24,69,0.06)', borderRadius: '2px' }}>
             <div ref={lineRef} style={{ width: '100%', height: '100%', background: 'linear-gradient(180deg, #00b4d8, #4361ee, #52b788, #f5a623, #9d4edd)', borderRadius: '2px', transformOrigin: 'top center', transform: 'scaleY(0)' }} />
           </div>
 
@@ -162,6 +162,17 @@ export default function Solution() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 600px) {
+          #solution .solution-timeline { padding-left: 36px !important; }
+          #solution .solution-line-track { left: 13px !important; }
+          #solution .step-dot { left: -36px !important; width: 28px !important; height: 28px !important; }
+          #solution .step-dot span { font-size: 10px !important; }
+          #solution .step-content { padding: 22px !important; }
+          #solution .step-content h3 { font-size: 16px !important; }
+        }
+      `}</style>
     </section>
   )
 }

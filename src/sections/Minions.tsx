@@ -112,8 +112,8 @@ export default function Minions() {
           <p style={{ textAlign: 'center', color: '#8896a4', fontSize: '14px', margin: '0 0 20px 0', maxWidth: '640px', marginLeft: 'auto', marginRight: 'auto' }}>
             Banks, email, and accounting feed Open Banking and integrations into FM — then insights, agents, and MCP links to frontier models.
           </p>
-          <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-            <svg viewBox="0 0 920 400" role="img" aria-label="Architecture diagram" style={{ display: 'block', minWidth: '720px', width: '100%', maxWidth: '920px', margin: '0 auto', height: 'auto' }}>
+          <div className="arch-scroll" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
+            <svg viewBox="0 0 920 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Architecture diagram" className="arch-svg" style={{ display: 'block', width: '100%', maxWidth: '920px', margin: '0 auto', height: 'auto' }}>
               <defs>
                 <linearGradient id="fmHubGradLight2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#f5f7fa" /><stop offset="100%" stopColor="#fff" /></linearGradient>
                 <marker id="arrowFmInLight2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#00b4d8" /></marker>
@@ -166,6 +166,16 @@ export default function Minions() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          #minions .chat-builder { padding: 24px 18px !important; }
+          #minions .arch-diagram { padding: 18px 14px !important; }
+        }
+        @media (max-width: 480px) {
+          #minions .minion-card { padding: 22px !important; }
+        }
+      `}</style>
     </section>
   )
 }
