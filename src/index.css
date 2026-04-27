@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-base: #ffffff;
+    --bg-warm: #fafafa;
+    --bg-section: #f5f7fa;
+    --surface-dark: #001845;
+    --text-primary: #0a1628;
+    --text-secondary: #8896a4;
+    --text-muted: #b0bcc8;
+    --accent-cyan: #00b4d8;
+    --accent-green: #52b788;
+    --accent-blue: #4361ee;
+    --accent-purple: #9d4edd;
+    --accent-amber: #ffb703;
+    --accent-coral: #f08080;
+    --radius: 24px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  .label-mono {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.4px;
+    font-weight: 400;
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 24, 69, 0.04);
+    border-radius: 24px;
+  }
+
+  .glass-card-strong {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(0, 24, 69, 0.05);
+    border-radius: 24px;
+  }
+}
+
+/* Aurora gradient animation */
+@keyframes aurora-move {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.glow-1 {
+  animation: aurora-move 12s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.glow-2 {
+  animation: aurora-move 12s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+.glow-3 {
+  animation: aurora-move 12s ease-in-out infinite;
+  animation-delay: -8s;
+}
+
+/* Nav pulse */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 24, 69, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 24, 69, 0.18);
+}
+
+/* Animated gradient text */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
